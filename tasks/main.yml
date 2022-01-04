@@ -34,3 +34,10 @@
     dest: /etc/profile.d/elk.sh
     mode: 0755
   tags: elastic
+- name: Configure Elasticsearch
+  become: true
+  template:
+    src: elasticsearch.yml.j2
+    mode: 0644
+    dest: "{{ elastic_home }}/elasticsearch.yml"
+  notify: restart Elasticsearch
