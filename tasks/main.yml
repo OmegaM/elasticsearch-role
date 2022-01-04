@@ -40,4 +40,6 @@
     src: elasticsearch.yml.j2
     mode: 0644
     dest: "{{ elastic_home }}/elasticsearch.yml"
-  notify: restart Elasticsearch
+- name: Start Elasticsearch as a deamon
+  become: true
+  command: "{{ elastic_home }}/bin/elasticsearch -d -p pid"    
